@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>News</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: "BiauKai", "標楷體", "LiSong Pro", serif;
+                overflow-x: hidden;
+            }
+            .logo{
+                width: 80px;
+                display: inline-block; 
+                } 
+            .caption{
+                background-color: #e1e0dc; 
+                padding: 20px;
+                margin: 0;
+                border-bottom: 2px solid #ccc;
+                display: flex; 
+                align-items: center; 
+            }
+            .caption .text{
+                text-align: left;
+                color:#452833;
+                margin: 0;
+                font-size: 28px; 
+                flex-grow: 1; 
+            }
+            .breaking-news {
+                display: flex;
+                align-items: center;
+                background-color:white;
+                color: black;
+                font-weight: bold;
+                font-size: 25px;
+                padding: 0px;
+                overflow: hidden;
+            }
+            .breaking-news .label {
+                background-color: #f44336;
+                font-size: 30px;
+                color: white;
+                width: 150px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 10px;
+            }
+            .breaking-news .marquee {
+                flex-grow: 1;
+                overflow: hidden;
+                white-space: nowrap;
+                position: relative;
+            }
+            .breaking-news .marquee div {
+                display: inline-block;
+                animation: marquee 20s linear infinite;
+                padding-left: 100%;
+            }
+            @keyframes marquee {
+                0% {
+                transform: translateX(0);
+                }
+                100% {
+                transform: translateX(-100%);
+                }
+            }
+            nav {
+                display: flex;
+                flex-wrap: wrap; 
+                justify-content: space-evenly; 
+                background-color: white;
+                border-top: 2px solid #ccc;
+                border-bottom: 2px solid #ccc;
+                padding: 10px 20px;
+            }
+            
+            nav a {
+                text-decoration: none;
+                color: #333;
+                font-size: 30px;
+                padding: 5px 10px;
+                flex: 1 0 auto; 
+                text-align: center;
+            }
+            
+            nav a.active {
+                font-weight: bold;
+                text-decoration: underline;
+            }
+            .foucus{ 
+                padding: 20px 50px 20px 50px;
+                text-align: left;
+            }
+            .summary {
+                font-size: 50px;
+                font-weight: bold;
+                margin-bottom: 10px;
+                margin-left: 20px;
+            }
+            .date {
+                font-size: 25px;
+                color: #666;
+                margin-top: 10px;
+                margin-left: 35px;
+            }
+            .news1 {
+                width: 100%;
+                margin: 0 auto;
+                display: grid;
+                gap: 20px; 
+            }
+            .news-item {
+                display: flex;
+                flex-direction: row; 
+                align-items: flex-start; 
+                gap: 20px; 
+                margin-bottom: 30px; 
+                padding-left: 20px;
+            }
+            .news-item1 {
+                display: flex;
+                flex-direction: row-reverse; 
+                align-items: flex-start;
+                gap: 20px;
+                margin-bottom: 20px;
+                padding-right: 20px
+            }
+            .news-item img,
+            .news-item1 img,
+            .smallnews img{
+                width: 40%; 
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+            .news-item img:hover,
+            .news-item1 img:hover,
+            .smallnews img:hover{
+                transform: scale(1.02); 
+            }
+            .headline {
+                font-size: 30px;
+                font-weight: bold;
+                margin-bottom: 10px;
+                color: #222;
+                line-height: 1.4;
+            }
+            .headline::after {
+                content: "";
+                display: block;
+                height: 2px;
+                background-color: black;
+                margin-top: 5px;
+            }
+            p {
+                font-size: 20px;
+                color: #555;
+                margin: 0;
+                line-height: 1.8;
+            }
+            .news2 {
+                display: flex;
+                justify-content: space-between; 
+                gap: 20px; 
+                margin: 20px auto; 
+                width: 90%; 
+            }
+            .left{
+                width: 60%; 
+            }
+            .right{
+                width: 35%
+            }
+            .smallnews {
+                display: flex;
+                align-items: center;
+                gap: 10px; 
+                margin-bottom: 15px;
+                padding: 0,10px;
+                transition: transform 0.3s ease;
+            }
+            .smallnews:hover {
+                transform: scale(1.05);
+            }
+            .smallnews img {
+                width: 200px; 
+                height: auto;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+            .smallnews:hover img {
+                transform: scale(1.05);
+            }
+            .smallnews p {
+                font-size: 25px; 
+                margin: 0;
+                line-height: 1.5;
+                color: black;
+                font-weight: bold;
+                transition: color 0.3s ease, font-size 0.3s ease;
+            }
+            .right{
+                background-color: #f5f5f5;
+                padding: 10px; 
+                border: 1px solid #ccc; 
+                font-size: 18px; 
+            }
+            .right  h2 {
+                font-size: 30px;
+                margin-bottom: 5px; 
+            }
+            .right ul {
+                padding: 0;
+                list-style: none;
+                transition: transform 0.3s ease;
+            }
+            .right ul :hover{
+                transform: scale(1.05);
+            }
+            .right li {
+                font-size: 20px; 
+                margin-bottom: 40px; 
+            }
+            .more-news {
+                text-align: center;
+                margin: 20px 0;
+                color: #06284c;
+                font-size: 30px;
+            }
+            .recommend-button {
+                background-color: #52b0df;
+                color: white;
+                font-size: 25px;
+                font-weight: bold;
+                border: none;
+                border-radius: 10px;
+                padding: 10px 30px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            .recommend-button:hover {
+                background-color: #0056b3;
+                transform: scale(1.05);
+            }
+            .global-news {
+                padding: 20px;
+                background-color: #f9f9f9;
+                text-align: center;
+            }
+            .Global {
+                font-size: 50px;
+                font-weight: bold;
+                margin-bottom: 10px;
+                margin-left: 20px;
+                text-align: left;
+            }
+            .video-section {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+            }
+            .main-video {
+                flex: 0 1 100%;
+                max-width: 100%;
+                align-self: left;
+            }
+            .main-video iframe {
+                width: 100%;
+                max-width: 800px;
+                height: 450px;
+                margin-bottom: 10px;
+                border: none;
+            }
+            .main-video p {
+                font-size: 30px;
+                font-weight: bold;
+                color: #222;
+            }
+            .side-videos {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+            }
+            .video-item {
+                flex: 0 1 calc(25% - 20px);
+                display: flex;
+                flex-direction: column;
+                align-items: right;
+                gap: 10px;
+            }
+            .video-item iframe {
+                width: 100%;
+                aspect-ratio: 16/9;
+                border: none;
+            }
+            .video-item p {
+                font-size: 20px;
+                text-align: center;
+                color: #222;
+                font-weight: bold;
+            }
+            .footer{
+                text-align: center;
+                border-top: 3px solid black;
+                padding: 20px;
+                margin-top: 20px;
+                min-height: 60px;
+                width: 100vw;
+            }
+            .footer p{
+                font-weight: bold;
+                color: black;
+                font-size: 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="caption">
+            <a href="../index.html"> 
+                <img class="logo" src="./images/logo3.png" alt="新聞"></a>
+            <h1 class="caption-text">New Vision News 新視界新聞</h1>
+        </div>
+        <div class="breaking-news">
+            <div class="label">快訊！</div>
+            <div class="marquee">
+                <div>
+                    敘利亞戰火為何再起 阿薩德政權面臨何種挑戰？&emsp;
+                    中東局勢緊張，國際社會如何因應？&emsp;
+                    俄羅斯與烏克蘭衝突持續升級，背後的原因與影響何在？&emsp;
+                </div>
+            </div>
+        </div>
+        <nav>
+            <a href="#" class="active">首頁</a>
+            <a href="#">國際</a>
+            <a href="#">社會</a>
+            <a href="#">生活</a>
+            <a href="#">娛樂</a>
+            <a href="#">股市</a>
+            <a href="#">運動</a>
+        </nav>
+        <div class="focus">
+            <div class="summary">焦點提要</div>
+            <div class="date">12月2號 星期一</div>
+        </div>
+        <div class="news1">
+            <div class="news-item">
+                <img src="./images/news1.webp" alt="停火協議">
+                <div>
+                    <div class="headline">以色列與真主黨停火協議：我們目前知道什麼？</div>
+                    <p>美國總統拜登宣布達成一項停火協議，結束以色列與伊朗支持的黎巴嫩真主黨民兵之間長達13個月戰爭。停火協議有哪些內容?</p>
+                </div>
+            </div>
+            <div class="news-item1">
+                <img src="./images/news2.webp" alt="台灣棒球">
+                <div>
+                    <div class="headline">台灣棒球：30年來從打假球醜聞到世界冠軍，如何承載殖民歷史與國族認同？</div>
+                    <p>台灣棒球隊在勝出世界棒球12強冠軍後，成員在台北巡遊，並至總統府與總統賴清德與副總統蕭美琴見面。</p>
+                </div>
+            </div>
+            <div class="news-item">
+                <img src="./images/news3.webp" alt="天氣變化">
+                <div>
+                    <div class="headline">明起北台灣變天易有雨，週末東北季風再增強</div>
+                    <p>明起東北季風增強，北台灣轉涼，且迎風面的北部、東半部地區容易有雨。</p>
+                </div>
+            </div>
+        </div>
+        <div class="news2">
+            <div class="left">
+                <div class="smallnews">
+                    <img src="./images/news4.jpeg" alt="小新聞">
+                    <p class="news-text">卸任前50天 拜登特赦兒子杭特</p>
+                </div>
+                <div class="smallnews">
+                    <img src="./images/news5.jpeg" alt="小新聞">
+                    <p class="news-text">一次性塑膠 延2035年禁用</p>
+                </div>
+                <div class="smallnews">
+                    <img src="./images/news6.webp" alt="小新聞">
+                    <p class="news-text">笑爛！周杰倫親自倒數3天開唱《暗號》大玩「下水道」哏</p>
+                </div>
+                <div class="smallnews">
+                    <img src="./images/news7.png" alt="小新聞">
+                    <p class="news-text">突發！ 南韓總統尹錫悅宣布緊急戒嚴 全軍指揮官召開會議戒備</p>
+                </div>
+            </div>
+            <div class="right">
+                <h2>熱門新聞</h2>
+                <ul>
+                    <li>1. 川普重返白宮！2024美國大選結果揭曉</li>
+                    <li>2. MLB史上最高合約？索托與洋基10天內敲定去向</li>
+                    <li>3. 南韓緊急戒嚴！逾40年首次引發國際震驚</li>
+                    <li>4. 台灣12強奪冠，棒球界沸騰！</li>
+                    <li>5. 輝達CEO黃仁勳躋身2024全球影響力人物榜</li>
+                    <li>6. SpaceX成功發射新型火箭，載人太空計畫邁入新里程！</li>
+                    <li>7. 全球氣候高峰會落幕，各國承諾2050年前實現碳中和目標。</li>
+                    <li>8. AI革命再進一步，OpenAI推出全新GPT-5模型引發熱議。</li>
+                </ul>
+            </div>
+        </div>
+        <div class="more-news">
+            <h2>顯示更多符合個人興趣的新聞</h2>
+            <button class="recommend-button">為你推薦</button>
+        </div>
+        <section class="global-news">
+            <div class="Global">全球視野</div>
+            <div class="video-section">
+                <div class="main-video">
+                    <iframe src="https://www.youtube.com/embed/uVZ8nM-9r-4?si=MB3UTBn-fGwSuCff" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p>拜登特赦兒子韓特 指政治滲入司法</p>
+                </div>
+                <div class="side-videos">
+                    <div class="video-item">
+                        <iframe  src="https://www.youtube.com/embed/iQp24DvCo90?si=07pe4ZNjaO70CS0e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <p>曾虛白新聞獎揭曉 厚實媒體素養與教育</p>
+                    </div>
+                    <div class="video-item">
+                        <iframe src="https://www.youtube.com/embed/6tymSfTPM58?si=oarloWarMpETxVPg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <p>賴總統過境夏威夷 搭越野車參訪電影拍攝場景</p>
+                    </div>
+                    <div class="video-item">
+                        <iframe src="https://www.youtube.com/embed/aD6nL3CBQGU?si=q2sMf1aWRvMP-Bnf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <p>敘利亞反抗軍攻占阿勒坡 恐重燃內戰</p>
+                    </div>
+                    <div class="video-item">
+                        <iframe src="https://www.youtube.com/embed/2s_MO4NF4fo?si=by-ZBPG8HnL2QVzY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <p>北市議員遊南韓遇戒嚴 直言「非常緊張的狀況」</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="footer">
+            <p>新視界新聞版權所有，未經授權不得轉載。<br> &copy;2024 The Liberty Times. All Rights Reserved.</p>
+        </div>
+    </body>
+</html>

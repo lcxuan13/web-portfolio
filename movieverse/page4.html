@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MovieVerse</title>
+        <style>
+            *{
+                margin: 0;
+                padding:0;
+                box-sizing: border-box;
+            }
+            body{
+                background-color: #fff;
+                margin: 0; 
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                box-sizing: border-box;
+                font-family: "URW Chancery L", Arial, sans-serif;
+                text-align: left;
+                overflow-x: hidden;
+            }
+            a{
+                text-decoration: none;
+            }
+            img{
+                max-width: 100%;
+            }
+            .logo{
+            width: 80px;
+            }   
+            .main_nav {
+                display: flex;
+                font-size: 1.25rem;
+                list-style: none;
+                align-items: center;
+                justify-content: center;
+                background-color:rgb(19, 7, 7); 
+                justify-content: space-between;
+                color: #fff; 
+                padding: 10px 20px;
+                gap: 2em;
+            }
+            .main_nav a:hover{
+                color: #FFD700;
+            }
+            .cinema {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color:rgb(19, 7, 7); 
+                width: 100%;
+                max-width: 100vw;
+                height: 60px;
+                padding: 0 20px;
+                overflow:hidden;
+            }
+            h1 {
+                display: flex;
+                font-weight: bolder; 
+                margin: 0;
+                color: #fff; 
+                font-size: 2.5rem;
+            }
+            .button{
+                color:#fff;
+            }
+            .movie_container{
+                width: 100vw;
+                height: 60vh;
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+            }
+            .movie_container img{
+                width: 100%;
+                height: auto;
+                object-fit: cover; 
+                display: block;
+            }
+            .text{
+                text-align: center;
+                background-color: #e0f7fa; 
+                border-radius: 50px;  
+                font-size: 1.5rem; 
+                color: #000; 
+                border: 2px solid #add8e6; 
+                margin-bottom: 50px; 
+                padding: 20px 40px;
+                letter-spacing: 10px;
+            }
+            form {
+                margin-left: 20px;
+            }
+            form input[type="date"] {
+                box-sizing: border-box; 
+                width: 100%; 
+                padding: 10px;
+                margin-bottom: 15px;
+                font-size: 1rem;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                display: block;
+            }
+            button[type="submit"] {
+                background-color: #797e83;
+                color: white;
+                font-size: 18px;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+            button[type="submit"]:hover {
+                background-color: #03090f;
+            }
+            .content_container {
+                display: flex; 
+                justify-content: space-between; 
+                align-items: stretch;
+                gap: 20px;
+                flex-wrap: wrap; 
+                margin-bottom: 20px; 
+            }
+            form {
+                flex: 1;
+                padding: 20px; 
+                border-radius: 8px; 
+                box-shadow: 0 4px 6px black; 
+            }
+            form label {
+                display: block;  
+                margin-bottom: 10px; 
+                font-size: 1.1rem;  
+            }
+            form select, form input {
+                width: 100%; 
+                padding: 10px; 
+                margin-bottom: 20px;
+                font-size: 1rem;  
+                border-radius: 5px;  
+                border: 1px solid #ccc;  
+            }
+            .movie_yt {
+                flex: 2; 
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-radius: 8px;
+                padding: 20px;
+                min-height: 500px;
+            }
+            .movie_yt video {
+                width: 100%; 
+                height: auto; 
+                margin-bottom: 20px;
+            }
+            .hot {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr); 
+                gap: 20px; 
+                padding: 20px;
+                margin-top: 20px; 
+            }
+            .hot img {
+                width: 100%;              
+                aspect-ratio: 3 / 4; 
+                border-radius: 5px;        
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+            .hot img:hover{
+                transform: scale(1.03); 
+            }
+            .hot-text{
+                text-align: center;
+                background-color: #e0f7fa; 
+                border-radius: 50px;  
+                font-size: 1.5rem; 
+                color: #000; 
+                border: 2px solid #add8e6; 
+                padding: 20px 40px;
+                width: 25%;
+                margin-bottom: 0px;
+                margin-left: 20px;
+                letter-spacing: 10px;
+            }
+            .hot div {
+                text-align: center;
+            }
+            .hot p {
+                margin-top: 10px; 
+            }
+            footer {
+                background-color: rgb(19, 7, 7); 
+                color: #fff; 
+                padding: 20px 0; 
+                font-family: Arial, sans-serif; 
+            }
+            .footer-container {
+                display: flex;
+                justify-content: space-around; 
+                padding: 20px;
+                flex-wrap: wrap; 
+            }
+            .footer-column {
+                flex: 1; 
+                min-width: 100px;
+                padding: 10px;
+            }
+            .footer-column h4 {
+                font-size: 1.2rem;
+                margin-bottom: 15px; 
+                text-align: center; 
+            }
+            .footer-column ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                text-align: center;
+            }
+            .footer-column ul li {
+                margin-bottom: 10px; 
+            }
+            .footer-column ul li a {
+                color: #fff; 
+                text-decoration: none;
+                font-size: 1rem;
+            }
+            .footer-column ul li a:hover {
+                color: #FFD700; 
+            }
+            .footer-p{
+                text-align: center;
+                border-top: 1px solid #fff; 
+                padding: 20px;
+                margin-top: 20px;
+                font-size: 0.9rem;
+                min-height: 60px;
+                width: 100vw;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="cinema">
+                <a href="../index.html"> 
+                    <img class="logo" src="./images/logo1.png" alt="電影院">
+                </a>
+                <h1>MovieVerse </h1>
+            <nav>
+                <ul class="main_nav">
+                    <li><a class="button" href="announcement.html">公告</a></li>
+                    <li><a class="button" href="activity.html">活動</a></li>
+                    <li><a class="button" href="transportation.html">交通</a></li>
+                    <li><a class="button" href="member.html">會員</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="movie_container">
+            <img  src="./images/movie.png" alt="最近電影">
+        </div>
+        <div class="content_container">
+            <form name="movie" >
+                <div class="text">立即訂票</div>
+                <label>戲院：</label>
+                <select name="theater">
+                    <option value="1">城市影城</option>
+                    <option value="2">星辰影城</option>
+                    <option value="3">華影影城</option>
+                    <option value="4">環球影城</option>
+                </select><br>
+                <label>電影：</label>
+                <select name="movie1">
+                    <option value="1">鬼碟仙</option>
+                    <option value="2">我談的那場戀愛</option>
+                    <option value="3">巴鐵女孩</option>
+                    <option value="4">女兒的女兒</option>
+                    <option value="5">神鬼戰士2</option>
+                    <option value="6">焚城</option>
+                    <option value="7">猛毒最終章</option>
+                    <option value="8">富豪遊戲</option>
+                    <option value="9">異教詭屋</option>
+                    <option value="10">海洋奇緣2</option>
+                    <option value="11">魔法壞女巫</option>
+                    <option value="12">五等分的新娘</option>
+                </select><br>
+                <label>日期：</label>
+                <input name="set date" type="date" min="2024-12-10"> <br>
+                <label>時間：</label>
+                <select name="time">
+                    <option value="1">10:00</option>
+                    <option value="2">12:00</option>
+                    <option value="3">13:45</option>
+                    <option value="4">15:20</option>
+                    <option value="5">15:30</option>
+                    <option value="6">18:10</option>
+                    <option value="7">19:40</option>
+                    <option value="8">20:00</option>
+                    <option value="9">22:50</option>
+                </select>
+                <label>票種：</label>
+                <select name="ticket">
+                    <option value="1">全票</option>
+                    <option value="2">優待票</option>
+                    <option value="3">敬老票</option>
+                    <option value="4">團體優待劵</option>
+                </select>
+                <label>張數：</label>
+                <select name="people">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                    <button type="submit">提交</button>
+            </form>
+            <div class="movie_yt">
+                <div class="text">最新驚悚預告</div>
+                <video src="./images/smile.mp4" type="video/mp4"
+                    width="700" height="600" autoplay controls >
+                </video>
+                <h2>微笑2 10月18日 笑死人 戲院見</h2>
+            </div>
+        </div>
+        <div class="hot-text">現在熱映中</div>
+        <div class="hot">            
+            <div>
+                <img src="./images/movie1.jpeg" alt="鬼碟仙">
+                <p>鬼碟仙 / 119分鐘</p>
+            </div>
+            <div>
+                <img src="./images/movie2.png" alt="我談的那場戀愛">
+                <p>我談的那場戀愛 / 116分鐘</p>
+            </div>
+            <div>
+                <img src="./images/movie3.jpeg" alt="巴鐵女孩">
+                <p>巴鐵女孩 / 110分鐘</p>
+            </div>
+            <div>
+                <img src="./images/movie4.jpeg" alt="女兒的女兒">
+                <p>女兒的女兒 / 120分鐘</p>
+            </div>
+            <div>
+                <img src="./images/movie5.jpeg" alt="神鬼戰士2">
+                <p>神鬼戰士2 / 127分鐘</p>
+            </div>
+            <div>
+                <img src="./images/movie6.jpeg" alt="焚城">
+                <p>焚城 / 118分鐘</p>
+            </div>
+            <div>
+                <img src="./images/movie7.jpeg" alt="猛毒最終章">
+                <p>猛毒最終章 / 165分鐘</p>
+            </div>
+            <div>
+                <img src="./images/movie8.jpeg" alt="富豪遊戲">
+                <p>富豪遊戲 / 129分鐘</p>
+            </div>
+            <div>
+                <img src="./images/movie9.jpeg" alt="異教詭屋">
+                <p>異教詭屋 / 118分鐘</p>
+            </div>
+            <div>
+                <img src="./images/movie10.jpeg" alt="海洋奇緣2">
+                <p>海洋奇緣2 / 107分鐘</p>
+            </div>
+            <div>
+                <img src="./images/movie11.jpeg" alt="魔法壞女巫">
+                <p>魔法壞女巫 / 110分鐘</p>
+            </div>
+            <div>
+                <img src="./images/movie12.jpeg" alt="五等分的新娘">
+                <p>五等分的新娘 / 115分鐘</p>
+            </div>
+        </div>
+        <footer>
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>關於我們</h4>
+                    <ul>
+                        <li><a href="#">電影</a></li>
+                        <li><a href="#">影城</a></li>
+                        <li><a href="#">好康</a></li>
+                        <li><a href="#">消息公告</a></li>
+                        <li><a href="#">顧客意見箱</a></li>
+                        <li><a href="#">信用卡優惠</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>MovieVerse會員</h4>
+                    <ul>
+                        <li><a href="#">加入會員</a></li>
+                        <li><a href="#">會員規章</a></li>
+                        <li><a href="#">會員資料修改</a></li>
+                        <li><a href="#">會員密碼查詢</a></li>
+                        <li><a href="#">常見問題</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>線上訂票</h4>
+                    <ul>
+                        <li><a href="#">電影訂票</a></li>
+                        <li><a href="#">APP</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>特殊影廳</h4>
+                    <ul>
+                        <li><a href="#">跨腳廳</a></li>
+                        <li><a href="#">親子</a></li>
+                        <li><a href="#">VIP</a></li>
+                        <li><a href="#">IMaX</a></li>
+                    </ul>
+                </div>
+                <div class="footer-p">
+                    <p>Copyright &copy; 2024 MovieVerse. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
